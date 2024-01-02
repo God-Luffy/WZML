@@ -486,7 +486,7 @@ bot.add_handler(MessageHandler(mirror, filters=command(
 bot.add_handler(MessageHandler(qb_mirror, filters=command(
     BotCommands.QbMirrorCommand) & CustomFilters.authorized & ~CustomFilters.blacklisted))
 bot.add_handler(MessageHandler(leech, filters=command(
-    BotCommands.LeechCommand) & CustomFilters.authorized & ~CustomFilters.blacklisted))
+    BotCommands.LeechCommand) & ~CustomFilters.blacklisted))
 bot.add_handler(MessageHandler(qb_leech, filters=command(
-    BotCommands.QbLeechCommand) & CustomFilters.authorized & ~CustomFilters.blacklisted))
+    BotCommands.QbLeechCommand) & ~CustomFilters.blacklisted))
 bot.add_handler(CallbackQueryHandler(wzmlxcb, filters=regex(r'^wzmlx')))
