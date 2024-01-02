@@ -1,25 +1,16 @@
 #!/usr/bin/env python3
 from bot.helper.telegram_helper.bot_commands import BotCommands
 
-YT_HELP_MESSAGE = ["""<i>Send links/files along with cmd or reply to cmd to mirror or leech ytdl supported stes on Telegram or GDrive or DDLs with different Engines like RClone or yt-dlp</i>
+YT_HELP_MESSAGE = ["""<i>Send links/files along with cmd or reply to cmd to upload ytdl supported stes on Telegram or yt-dlp</i>
 
 ➲ <b><u>Available Args</u></b>:
 
 1.  <b>-n or -name :</b> Rename file.
 2.  <b>-z or -zip :</b> Zip files or Links
-3.  <b>-up or -upload :</b> Upload to your Drive or RClone or DDL
-4.  <b>-b or -bulk :</b> Download bulk links.
-5.  <b>-i :</b> Download multi links by reply
-6.  <b>-m or -sd or -samedir :</b> Download multi links within same upload directory.
-7.  <b>-opt or -options :</b> Attach Custom yt-dlp options to link
-8.  <b>-s or -select :</b> Select files from yt-dlp links even if qual is specified
-9.  <b>-rcf :</b> RClone additional Flags
-10. <b>-id :</b> GDrive Folder id or link
-11. <b>-index:</b> Index url for gdrive_arg
-12. <b>-c or -category :</b> Gdrive category to Upload, Specific Name (case insensitive)
-13. <b>-ud or -dump :</b> Dump category to Upload, Specific Name (case insensitive) or chat_id or chat_username
-14. <b>-ss or -screenshots :</b> Generate Screenshots for Leeched Files
-15. <b>-t or -thumb :</b> Custom Thumb for Specific Leech
+3.  <b>-s or -select :</b> Select files from yt-dlp links even if qual is specified
+4. <b>-ud or -dump :</b> Dump category to Upload, Specific Name (case insensitive) or chat_id or chat_username
+5. <b>-ss or -screenshots :</b> Generate Screenshots for Leeched Files
+6. <b>-t or -thumb :</b> Custom Thumb for Specific Leech
 """, """
 ➲ <b><i>Send link along with command line</i></b>:
 <code>/cmd</code> link -s -n new name -opt x:y|x1:y1
@@ -47,68 +38,17 @@ Incase default quality added from yt-dlp options using format option and you nee
 <code>/cmd</code> link -z (zip)
 <code>/cmd</code> link -z password (zip password protected)
 
-➲ <b><i>Options</i></b>: -opt or -options
-<code>/cmd</code> link -opt playliststart:^10|fragment_retries:^inf|matchtitle:S13|writesubtitles:true|live_from_start:true|postprocessor_args:{"ffmpeg": ["-threads", "4"]}|wait_for_video:(5, 100)
-<b>Note:</b> Add `^` before integer or float, some values must be numeric and some string.
-Like playlist_items:10 works with string, so no need to add `^` before the number but playlistend works only with integer so you must add `^` before the number like example above.
-You can add tuple and dict also. Use double quotes inside dict.
-
-➲ <b><i>Multi links only by replying to first link</i></b>: -i
-<code>/cmd</code> -i 10(number of links)
-
-➲ <b><i>Multi links within same upload directory only by replying to first link</i></b>: -m or -sd or -samedir
-<code>/cmd</code> -i 10(number of links) -m folder name
-
-➲ <b><i>Upload Custom Drive:</i></b> -id & -index(Optional)
-<code>/{cmd}</code> -id <code>drive_folder_link</code> or <code>drive_id</code> -index <code>https://example.com/0:</code>
-Here, drive_id must be folder id or folder link and index must be url else it will not accept.
-
-➲ <b><i>Custom Category Select:</i></b> -c or -category
-<code>/{cmd}</code> -c <code>category_name</code>
-This works for both Bot Categories as well as UserTDs (if enabled)
-You can also select Drive Upload from Buttons if having more than 1 and this arg not specified
-
 ➲ <b><i>Custom Dump Select:</i></b> -ud or -dump
 <code>/{cmd}</code> -ud <code>dump_name</code> or <code>@username</code> or <code>-100xxxxxx chat_id</code> or all
 You can also select Dump Chat from Buttons if having more than 1 and this arg not specified
 You -ud all for Uploading in all Dump Chats of yours
 Make Sure Bot is already Admin else it will not accept.
 
-➲ <b><i>Upload</i></b>: -up or -upload
-<code>/cmd</code> link -up <code>rcl</code> (To select rclone config, remote and path)
-<code>/cmd</code> link -up <code>ddl</code>
-You can directly add the upload path: -up remote:dir/subdir
-
-If DEFAULT_UPLOAD is `rc` then you can pass up: `gd` to upload using gdrive tools to GDRIVE_ID.
-If DEFAULT_UPLOAD is `gd` then you can pass up: `rc` to upload to RCLONE_PATH.
-If DEFAULT_UPLOAD is `ddl` then you can pass up: `rc` or `gd` to upload to RCLONE_PATH or GDRIVE_ID
-If you want to add path manually from your config (uploaded from usetting) add <code>mrcc:</code> before the path without space
-<code>/cmd</code> link -up <code>mrcc:</code>main:dump
-
-➲ <b><i>RClone Flags</i></b>: -rcf
-<code>/cmd</code> link -up path|rcl -rcf --buffer-size:8M|--drive-starred-only|key|key:value
-This will override all other flags except --exclude
-Check here all <a href='https://rclone.org/flags/'>RcloneFlags</a>.
-
-➲ <b><i>Bulk Download</i></b>: -b or -bulk
-Bulk can be used by text message and by replying to text file contains links seperated by new line.
-You can use it only by reply to message(text/file).
-All options should be along with link!
-<b>Example:</b>
-link1 -n new name -up remote1:path1 -rcf |key:value|key:value
-link2 -z -n new name -up remote2:path2
-link3 -z -n new name -opt ytdlpoptions
-
-<b>Note:</b> You can't add -m arg for some links only, do it for all links or use multi without bulk!
-link pswd: pass(zip) opt: ytdlpoptions up: remote2:path2
-Reply to this example by this cmd <code>/cmd</code> b(bulk)
-You can set start and end of the links from the bulk with -b start:end or only end by -b :end or only start by -b start. The default start is from zero(first link) to inf.
-
 ➲ <b>NOTES:</b>
 Check all yt-dlp API options from this <a href='https://github.com/yt-dlp/yt-dlp/blob/master/yt_dlp/YoutubeDL.py#L184'>FILE</a>
 """]
 
-MIRROR_HELP_MESSAGE = ["""<i>Send links/files along with cmd or reply to cmd to mirror or leech on Telegram or GDrive or DDLs with different Engines like RClone, Aria2 or qBit</i>
+MIRROR_HELP_MESSAGE = ["""<i>Send links/files along with cmd or reply to cmd to upload on Telegram or GDrive or DDLs with different Engines like RClone, Aria2 or qBit</i>
 
 ➲ <b><u>Available Args</u></b>:
 
@@ -320,103 +260,88 @@ But you can always use -c or -category with to select category before download s
 
 help_string = [f'''⌬ <b><i>Basic Commands!</i></b>
 
-<b>Use Mirror commands to download your link/file/rcl</b>
-┠ /{BotCommands.MirrorCommand[0]} or /{BotCommands.MirrorCommand[1]}: Download via file/url/media to Upload to Cloud Drive.
-┖ /{BotCommands.CategorySelect}: Select Custom category to Upload to Cloud Drive from UserTds or Bot Categories.
-
-<b>Use qBit commands for torrents only:</b>
-┠ /{BotCommands.QbMirrorCommand[0]} or /{BotCommands.QbMirrorCommand[1]}: Download using qBittorrent and Upload to Cloud Drive.
-┖ /{BotCommands.BtSelectCommand}: Select files from torrents by btsel_gid or reply.
-
-<b>Use yt-dlp commands for YouTube or any supported sites:</b>
-┖ /{BotCommands.YtdlCommand[0]} or /{BotCommands.YtdlCommand[1]}: Mirror yt-dlp supported link.
-
-<b>Use Leech commands for upload to Telegram:</b>
-┠ /{BotCommands.LeechCommand[0]} or /{BotCommands.LeechCommand[1]}: Upload to Telegram.
-┠ /{BotCommands.QbLeechCommand[0]} or /{BotCommands.QbLeechCommand[1]}: Download using qBittorrent and upload to Telegram(For torrents only).
-┖ /{BotCommands.YtdlLeechCommand[0]} or /{BotCommands.YtdlLeechCommand[1]}: Download using Yt-Dlp(supported link) and upload to telegram.
+<b>Use Upload commands for upload to Telegram:</b>
+/{BotCommands.LeechCommand[0]} or /{BotCommands.LeechCommand[1]}: Upload to Telegram.
+/{BotCommands.QbLeechCommand[0]} or /{BotCommands.QbLeechCommand[1]}: Download using qBittorrent and upload to Telegram(For torrents only).
+/{BotCommands.YtdlLeechCommand[0]} or /{BotCommands.YtdlLeechCommand[1]}: Download using Yt-Dlp(supported link) and upload to telegram.
 
 <b>G-Drive commands:</b>
-┠ /{BotCommands.CloneCommand[0]}: Copy file/folder to Cloud Drive.
-┠ /{BotCommands.CountCommand} [drive_url]: Count file/folder of Google Drive.
-┖ /{BotCommands.DeleteCommand} [drive_url]: Delete file/folder from Google Drive (Only Owner & Sudo).
+/{BotCommands.CountCommand} [drive_url]: Count file/folder of Google Drive.
+/{BotCommands.DeleteCommand} [drive_url]: Delete file/folder from Google Drive (Only Owner & Sudo).
 
 <b>Cancel Tasks:</b>
-┖ /{BotCommands.CancelMirror}: Cancel task by cancel_gid or reply.''',
+/{BotCommands.CancelMirror}: Cancel task by cancel_gid or reply.''',
 
 f'''⌬ <b><i>Users Commands!</i></b>
 
 <b>Bot Settings:</b>
-┖ /{BotCommands.UserSetCommand[0]} or /{BotCommands.UserSetCommand[1]} [query]: Open User Settings (PM also)
+/{BotCommands.UserSetCommand[0]} or /{BotCommands.UserSetCommand[1]} [query]: Open User Settings (PM also)
 
 <b>Authentication:</b>
-┖ /login: Login to Bot to Access Bot without Temp Pass System (Private)
+/login: Login to Bot to Access Bot without Temp Pass System (Private)
 
 <b>Bot Stats:</b>
-┠ /{BotCommands.StatusCommand[0]} or /{BotCommands.StatusCommand[1]}: Shows a status page of all active tasks.
-┠ /{BotCommands.StatsCommand[0]} or /{BotCommands.StatsCommand[1]}: Show Server detailed stats.
-┖ /{BotCommands.PingCommand[0]} or /{BotCommands.PingCommand[1]}: Check how long it takes to Ping the Bot.
-
-<b>RSS Feed:</b>
-┖ /{BotCommands.RssCommand}: Open RSS Menu (Sub/Unsub/Start/Pause)''',
+/{BotCommands.StatusCommand[0]} or /{BotCommands.StatusCommand[1]}: Shows a status page of all active tasks.
+/{BotCommands.StatsCommand[0]} or /{BotCommands.StatsCommand[1]}: Show Server detailed stats.
+/{BotCommands.PingCommand[0]} or /{BotCommands.PingCommand[1]}: Check how long it takes to Ping the Bot.''',
 
 f'''⌬ <b><i>Owner or Sudos Commands!</i></b>
 
 <b>Bot Settings:</b>
-┠ /{BotCommands.BotSetCommand[0]} or /{BotCommands.BotSetCommand[1]} [query]: Open Bot Settings (Only Owner & Sudo).
-┖ /{BotCommands.UsersCommand}: Show User Stats Info (Only Owner & Sudo).
+/{BotCommands.BotSetCommand[0]} or /{BotCommands.BotSetCommand[1]} [query]: Open Bot Settings (Only Owner & Sudo).
+/{BotCommands.UsersCommand}: Show User Stats Info (Only Owner & Sudo).
 
 <b>Authentication:</b>
-┠ /{BotCommands.AuthorizeCommand[0]} or /{BotCommands.AuthorizeCommand[1]}: Authorize a chat or a user to use the bot (Only Owner & Sudo).
-┠ /{BotCommands.UnAuthorizeCommand[0]} or /{BotCommands.UnAuthorizeCommand[1]}: Unauthorize a chat or a user to use the bot (Only Owner & Sudo).
-┠ /{BotCommands.AddSudoCommand}: Add sudo user (Only Owner).
-┠ /{BotCommands.RmSudoCommand}: Remove sudo users (Only Owner).
-┠ /{BotCommands.AddBlackListCommand[0]} or /{BotCommands.AddBlackListCommand[1]}: Add User in BlackListed, so that user can't use the Bot anymore.
-┖ /{BotCommands.RmBlackListCommand[0]} or /{BotCommands.RmBlackListCommand[1]}: Remove a BlackListed User, so that user can again use the Bot.
+/{BotCommands.AuthorizeCommand[0]} or /{BotCommands.AuthorizeCommand[1]}: Authorize a chat or a user to use the bot (Only Owner & Sudo).
+/{BotCommands.UnAuthorizeCommand[0]} or /{BotCommands.UnAuthorizeCommand[1]}: Unauthorize a chat or a user to use the bot (Only Owner & Sudo).
+/{BotCommands.AddSudoCommand}: Add sudo user (Only Owner).
+/{BotCommands.RmSudoCommand}: Remove sudo users (Only Owner).
+/{BotCommands.AddBlackListCommand[0]} or /{BotCommands.AddBlackListCommand[1]}: Add User in BlackListed, so that user can't use the Bot anymore.
+/{BotCommands.RmBlackListCommand[0]} or /{BotCommands.RmBlackListCommand[1]}: Remove a BlackListed User, so that user can again use the Bot.
 
 <b>Bot Stats:</b>
-┖ /{BotCommands.BroadcastCommand[0]} or /{BotCommands.BroadcastCommand[1]} [reply_msg]: Broadcast to PM users who have started the bot anytime.
+/{BotCommands.BroadcastCommand[0]} or /{BotCommands.BroadcastCommand[1]} [reply_msg]: Broadcast to PM users who have started the bot anytime.
 
 <b>G-Drive commands:</b>
-┖ /{BotCommands.GDCleanCommand[0]} or /{BotCommands.GDCleanCommand[1]} [drive_id]: Delete all files from specific folder in Google Drive.
+/{BotCommands.GDCleanCommand[0]} or /{BotCommands.GDCleanCommand[1]} [drive_id]: Delete all files from specific folder in Google Drive.
 
 <b>Cancel Tasks:</b>
-┖ /{BotCommands.CancelAllCommand[0]}: Cancel all Tasks & /{BotCommands.CancelAllCommand[1]} for Multiple Bots.
+/{BotCommands.CancelAllCommand[0]}: Cancel all Tasks & /{BotCommands.CancelAllCommand[1]} for Multiple Bots.
 
 <b>Maintainance:</b>
-┠ /{BotCommands.RestartCommand[0]} or /{BotCommands.RestartCommand[1]}: Restart and Update the Bot (Only Owner & Sudo).
-┠ /{BotCommands.RestartCommand[2]}: Restart and Update all Bots (Only Owner & Sudo).
-┖ /{BotCommands.LogCommand}: Get a log file of the bot. Handy for getting crash reports (Only Owner & Sudo).
+/{BotCommands.RestartCommand[0]} or /{BotCommands.RestartCommand[1]}: Restart and Update the Bot (Only Owner & Sudo).
+/{BotCommands.RestartCommand[2]}: Restart and Update all Bots (Only Owner & Sudo).
+/{BotCommands.LogCommand}: Get a log file of the bot. Handy for getting crash reports (Only Owner & Sudo).
 
 <b>Executors:</b>
-┠ /{BotCommands.ShellCommand}: Run shell commands (Only Owner).
-┠ /{BotCommands.EvalCommand}: Run Python Code Line | Lines (Only Owner).
-┠ /{BotCommands.ExecCommand}: Run Commands In Exec (Only Owner).
-┠ /{BotCommands.ClearLocalsCommand}: Clear {BotCommands.EvalCommand} or {BotCommands.ExecCommand} locals (Only Owner).
-┖ /exportsession: Generate User StringSession of Same Pyro Version (Only Owner).
+/{BotCommands.ShellCommand}: Run shell commands (Only Owner).
+/{BotCommands.EvalCommand}: Run Python Code Line | Lines (Only Owner).
+/{BotCommands.ExecCommand}: Run Commands In Exec (Only Owner).
+/{BotCommands.ClearLocalsCommand}: Clear {BotCommands.EvalCommand} or {BotCommands.ExecCommand} locals (Only Owner).
+/exportsession: Generate User StringSession of Same Pyro Version (Only Owner).
 
 <b>RSS Feed:</b>
-┖ /{BotCommands.RssCommand}: Open RSS Menu (Sub/Unsub/Start/Pause)
+/{BotCommands.RssCommand}: Open RSS Menu (Sub/Unsub/Start/Pause)
 
 <b>Extras:</b>
-┠ /{BotCommands.AddImageCommand} [url/photo]: Add Images in Bot
-┖ /{BotCommands.ImagesCommand}: Generate grid of Stored Images.''',
+/{BotCommands.AddImageCommand} [url/photo]: Add Images in Bot
+/{BotCommands.ImagesCommand}: Generate grid of Stored Images.''',
 
 f'''⌬ <b><i>Miscellaneous Commands!</i></b>
 
 <b>Extras:</b>
-┠ /{BotCommands.SpeedCommand[0]} or /{BotCommands.SpeedCommand[1]}: Check Speed in VPS/Server.
-┖ /{BotCommands.MediaInfoCommand[0]} or /{BotCommands.MediaInfoCommand[1]} [url/media]: Generate MediaInfo of Media or DL Urls
+/{BotCommands.SpeedCommand[0]} or /{BotCommands.SpeedCommand[1]}: Check Speed in VPS/Server.
+/{BotCommands.MediaInfoCommand[0]} or /{BotCommands.MediaInfoCommand[1]} [url/media]: Generate MediaInfo of Media or DL Urls
 
 <b>Torrent/Drive Search:</b>
-┠ /{BotCommands.ListCommand} [query]: Search in Google Drive(s).
-┖ /{BotCommands.SearchCommand} [query]: Search for torrents with API.
+/{BotCommands.ListCommand} [query]: Search in Google Drive(s).
+/{BotCommands.SearchCommand} [query]: Search for torrents with API.
 
 <b>Movie/TV Shows/Drama Search:</b>
-┠ /{BotCommands.IMDBCommand}: Search in IMDB.
-┠ /{BotCommands.AniListCommand}: Search for anime in AniList.
-┠ /{BotCommands.AnimeHelpCommand}: Anime help guide.
-┖ /{BotCommands.MyDramaListCommand}: Search in MyDramaList.
+/{BotCommands.IMDBCommand}: Search in IMDB.
+/{BotCommands.AniListCommand}: Search for anime in AniList.
+/{BotCommands.AnimeHelpCommand}: Anime help guide.
+/{BotCommands.MyDramaListCommand}: Search in MyDramaList.
 ''']
 
 PASSWORD_ERROR_MESSAGE = """
