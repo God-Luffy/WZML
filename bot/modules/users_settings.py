@@ -72,7 +72,6 @@ async def get_user_settings(from_user, key=None, edit_type=None, edit_mode=None)
     user_dict = user_data.get(user_id, {})
     if key is None:
         buttons.ibutton("Universal Settings", f"userset {user_id} universal")
-        buttons.ibutton("Mirror Settings", f"userset {user_id} mirror")
         buttons.ibutton("Leech Settings", f"userset {user_id} leech")
         if user_dict and any(key in user_dict for key in list(fname_dict.keys())):
             buttons.ibutton("Reset Setting", f"userset {user_id} reset_all")
