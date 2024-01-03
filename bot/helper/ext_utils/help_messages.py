@@ -82,12 +82,6 @@ MIRROR_HELP_MESSAGE = ["""<i>Send links/files along with cmd or reply to cmd to 
 <code>/cmd</code> link -n new name
 <b>NOTES</b>: Doesn't work with torrents.
 
-➲ <b><i>Direct Link Authorization</i></b>: -u -p or -user -pass
-<code>/cmd</code> link -u username -p password
-
-➲ <b><i>Direct link custom headers</i></b>: -h or -headers
-<code>/cmd</code> link -h key: value key1: value1
-
 ➲ <b><i>Screenshot Generation</b>: -ss or -screenshots
 <code>/cmd</code> link -ss number ,Screenshots for each Video File
 
@@ -106,76 +100,11 @@ MIRROR_HELP_MESSAGE = ["""<i>Send links/files along with cmd or reply to cmd to 
 ➲ <b><i>qBittorrent selection</i></b>: -s or -select
 <code>/cmd</code> link -s or by replying to file/link
 
-➲ <b><i>qBittorrent / Aria2 Seed</i></b>: -d or -seed
-<code>/cmd</code> link -d ratio:seed_time or by replying to file/link
-To specify ratio and seed time add -d ratio:time. Ex: -d 0.7:10 (ratio and time) or -d 0.7 (only ratio) or -d :10 (only time) where time in minutes.
-
-➲ <b><i>Multi links only by replying to first link/file</i></b>: -i
-<code>/cmd</code> -i 10(number of links/files)
-
-➲ <b><i>Multi links within same upload directory only by replying to first link/file</i></b>: -m or -sd or -samedir
-<code>/cmd</code> -i 10(number of links/files) -m folder name (multi message)
-<code>/cmd</code> -b -m folder name (bulk-message/file)
-
-➲ <b><i>Upload Custom Drive:</i></b> -id & -index(Optional)
-<code>/{cmd}</code> -id <code>drive_folder_link</code> or <code>drive_id</code> -index <code>https://example.com/0:</code>
-Here, drive_id must be folder id or folder link and index must be url else it will not accept.
-
-➲ <b><i>Custom Category Select:</i></b> -c or -category
-<code>/{cmd}</code> -c <code>category_name</code>
-This works for both Bot Categories as well as UserTDs (if enabled)
-You can also select Drive Upload from Buttons if having more than 1 and this arg not specified
-
 ➲ <b><i>Custom Dump Select:</i></b> -ud or -dump
 <code>/{cmd}</code> -ud <code>dump_name</code> or <code>@username</code> or <code>-100xxxxxx chat_id</code> or all
 You can also select Dump Chat from Buttons if having more than 1 and this arg not specified
 You -ud all for Uploading in all Dump Chats of yours
-Make Sure Bot is already Admin else it will not accept.
-
-➲ <b><i>Custom Upload</i></b>: -up or -upload
-<code>/cmd</code> link -up <code>rcl</code> (To select rclone config, remote and path)
-<code>/cmd</code> link -up <code>ddl</code>
-You can directly add the upload path: -up remote:dir/subdir
-
-If DEFAULT_UPLOAD is `rc` then you can pass up: `gd` to upload using gdrive tools to GDRIVE_ID.
-If DEFAULT_UPLOAD is `gd` then you can pass up: `rc` to upload to RCLONE_PATH.
-If DEFAULT_UPLOAD is `ddl` then you can pass up: `rc` or `gd` to upload to RCLONE_PATH or GDRIVE_ID
-If you want to add path manually from your config (uploaded from usetting) add <code>mrcc:</code> before the path without space
-<code>/cmd</code> link -up <code>mrcc:</code>main:dump
-
-➲ <b><i>RClone Flags</i></b>: -rcf
-<code>/cmd</code> link|path|rcl -up path|rcl -rcf --buffer-size:8M|--drive-starred-only|key|key:value
-This will override all other flags except --exclude
-Check here all <a href='https://rclone.org/flags/'>RcloneFlags</a>.
-
-➲ <b><i>Bulk Download</i></b>: -b or -bulk
-Bulk can be used by text message and by replying to text file contains links seperated by new line.
-You can use it only by reply to message(text/file).
-All options should be along with link!
-<b>Some Examples:</b>
-link1 -n new name -up remote1:path1 -rcf |key:value|key:value
-link2 -z -n new name -up remote2:path2
-link3 -uz -n new name -up remote2:path2
-<b>NOTES:</b> You can't add -m arg for some links only, do it for all links or use multi without bulk!
-Reply to this example by this cmd <code>/cmd</code> -b(bulk)
-You can set start and end of the links from the bulk like seed, with -b start:end or only end by -b :end or only start by -b start. The default start is from zero(first link) to inf.
-
-➲ <b><i>Join Splitted Files</i></b>: -j or -join
-This option will only work before extract and zip, so mostly it will be used with -m argument (samedir)
-This option is not Merging of Two links/files.
-<b>By Reply:</b>
-<code>/cmd</code> -i 3 -j -m folder name
-<code>/cmd</code> -b -j -m folder name
-If you have link which has splitted files:
-<code>/cmd</code> link -j
-
-➲ <b><i>RClone Download</i></b>:
-Treat rclone paths exactly like links
-<code>/cmd</code> main:dump/ubuntu.iso or <code>rcl</code>(To select config, remote and path)
-Users can add their own rclone from user settings
-
-If you want to add path manually from your config add <code>mrcc:</code> before the path without space
-<code>/cmd</code> <code>mrcc:</code>main:dump/ubuntu.iso
+Make Sure Bot is already Admin else it will not accepted
 
 ➲ <b><i>TG Links</i></b>:
 Treat tg links like any direct link
