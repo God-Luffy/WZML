@@ -257,11 +257,11 @@ async def main():
     bot.add_handler(MessageHandler(restart, filters=command(
         BotCommands.RestartCommand) & CustomFilters.sudo))
     bot.add_handler(MessageHandler(ping, filters=command(
-        BotCommands.PingCommand) & CustomFilters.authorized & ~CustomFilters.blacklisted))
+        BotCommands.PingCommand) & ~CustomFilters.blacklisted))
     bot.add_handler(MessageHandler(bot_help, filters=command(
-        BotCommands.HelpCommand) & CustomFilters.authorized & ~CustomFilters.blacklisted))
+        BotCommands.HelpCommand) & ~CustomFilters.blacklisted))
     bot.add_handler(MessageHandler(stats, filters=command(
-        BotCommands.StatsCommand) & CustomFilters.authorized & ~CustomFilters.blacklisted))
+        BotCommands.StatsCommand) & ~CustomFilters.blacklisted))
     LOGGER.info(f"WZML-X Bot [@{bot_name}] Started!")
     if user:
         LOGGER.info(f"WZ's User [@{user.me.username}] Ready!")
