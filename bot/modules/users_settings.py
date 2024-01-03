@@ -153,21 +153,21 @@ async def get_user_settings(from_user, key=None, edit_type=None, edit_mode=None)
         split_size = get_readable_file_size(config_dict['LEECH_SPLIT_SIZE']) + ' (Default)' if user_dict.get('split_size', '') == '' else get_readable_file_size(user_dict['split_size'])
         equal_splits = 'Enabled' if user_dict.get('equal_splits', config_dict.get('EQUAL_SPLITS')) else 'Disabled'
         media_group = 'Enabled' if user_dict.get('media_group', config_dict.get('MEDIA_GROUP')) else 'Disabled'
-        buttons.ibutton(f"{'✅️' if user_dict.get('split_size') else ''} Leech Splits", f"userset {user_id} split_size")
+        buttons.ibutton(f"{'✅️' if user_dict.get('split_size') else ''} Set Splits", f"userset {user_id} split_size")
 
         lcaption = 'Not Exists' if (val:=user_dict.get('lcaption', config_dict.get('LEECH_FILENAME_CAPTION', ''))) == '' else val
-        buttons.ibutton(f"{'✅️' if lcaption != 'Not Exists' else ''} Leech Caption", f"userset {user_id} lcaption")
+        buttons.ibutton(f"{'✅️' if lcaption != 'Not Exists' else ''} Set Caption", f"userset {user_id} lcaption")
 
         lprefix = 'Not Exists' if (val:=user_dict.get('lprefix', config_dict.get('LEECH_FILENAME_PREFIX', ''))) == '' else val
-        buttons.ibutton(f"{'✅️' if lprefix != 'Not Exists' else ''} Leech Prefix", f"userset {user_id} lprefix")
+        buttons.ibutton(f"{'✅️' if lprefix != 'Not Exists' else ''} Set Prefix", f"userset {user_id} lprefix")
 
         lsuffix = 'Not Exists' if (val:=user_dict.get('lsuffix', config_dict.get('LEECH_FILENAME_SUFFIX', ''))) == '' else val
-        buttons.ibutton(f"{'✅️' if lsuffix != 'Not Exists' else ''} Leech Suffix", f"userset {user_id} lsuffix")
+        buttons.ibutton(f"{'✅️' if lsuffix != 'Not Exists' else ''} Set Suffix", f"userset {user_id} lsuffix")
 
         lremname = 'Not Exists' if (val:=user_dict.get('lremname', config_dict.get('LEECH_FILENAME_REMNAME', ''))) == '' else val
-        buttons.ibutton(f"{'✅️' if lremname != 'Not Exists' else ''} Leech Remname", f"userset {user_id} lremname")
+        buttons.ibutton(f"{'✅️' if lremname != 'Not Exists' else ''} Set Remname", f"userset {user_id} lremname")
 
-        buttons.ibutton("Leech Dump", f"userset {user_id} ldump")
+        buttons.ibutton("Custom Dump", f"userset {user_id} ldump")
         ldump = 'Not Exists' if (val:=user_dict.get('ldump', '')) == '' else len(val)
 
         text = BotTheme('LEECH', NAME=name, DL=f"{dailyll} / {dailytlle}",
@@ -210,7 +210,7 @@ async def get_user_settings(from_user, key=None, edit_type=None, edit_mode=None)
             text += f"➲ <b>{fname_dict[key]} :</b> <code>{set_exist}</code>\n➲ <b>Encryption :</b> {'🔐' if set_exist else '🔓'}\n\n"
         elif key == 'split_size':
             set_exist = get_readable_file_size(config_dict['LEECH_SPLIT_SIZE']) + ' (Default)' if user_dict.get('split_size', '') == '' else get_readable_file_size(user_dict['split_size'])
-            text += f"➲ <b>Leech Split Size :</b> <i>{set_exist}</i>\n\n"
+            text += f"➲ <b>Custom Split Size :</b> <i>{set_exist}</i>\n\n"
             if user_dict.get('equal_splits', False) or ('equal_splits' not in user_dict and config_dict['EQUAL_SPLITS']):
                 buttons.ibutton("Disable Equal Splits", f"userset {user_id} esplits", "header")
             else:
@@ -354,7 +354,7 @@ async def set_custom(client, message, pre_event, key, direct=False):
         if key == 'usess':
             password = Fernet.generate_key()
             try:
-                await deleteMessage(await (await sendCustomMsg(message.from_user.id, f"<u><b>Decryption Key:</b></u> \n┃\n┃ <code>{password.decode()}</code>\n┃\n┖ <b>Note:</b> <i>Keep this Key Securely, this is not Stored in Bot and Access Key to use your Session...</i>")).pin(both_sides=True))
+                await deleteMessage(await (await sendCustomMsg(message.from_user.id, f"<u><b>Decryption Key:</b></u> \n\n<code>{password.decode()}</code>\n\n<b>Note:</b> <i>Keep this Key Securely, this is not Stored in Bot and Access Key to use your Session...</i>")).pin(both_sides=True))
                 encrypt_sess = Fernet(password).encrypt(value.encode())
                 value = encrypt_sess.decode()
             except Exception:
