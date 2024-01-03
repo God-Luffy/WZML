@@ -55,22 +55,9 @@ MIRROR_HELP_MESSAGE = ["""<i>Send links/files along with cmd or reply to cmd to 
 1.  <b>-n or -name :</b> Rename file.
 2.  <b>-z or -zip :</b> Zip files or Links
 3.  <b>-e or -extract or -uz or -unzip :</b> Extract/Unzip files from Archive
-4.  <b>-up or -upload :</b> Upload to your Drive or RClone or DDL
-6.  <b>-b or -bulk :</b> Download bulk links.
-7.  <b>-i :</b> Download multi links by reply
-9.  <b>-m or -sd or -samedir :</b> Download multi links within same upload directory.
-10. <b>-d or -seed :</b> Bittorrent seed torrent.
-11. <b>-s or -select :</b> Select files from torrent via Bittorrent
-12. <b>-u or -user :</b> Enter username for Auth
-13. <b>-p or -pass :</b> Enter password for Auth
-14. <b>-j or -join :</b> Join Multiple Files.
-15. <b>-rcf :</b> RClone additional Flags
-16. <b>-id :</b> GDrive Folder id or link
-17. <b>-index:</b> Index url for gdrive_arg
-18. <b>-c or -category :</b> Gdrive category to Upload, Specific Name (case insensitive)
-19. <b>-ud or -dump :</b> Dump category to Upload, Specific Name (case insensitive) or chat_id or chat_username
-20. <b>-ss or -screenshots :</b> Generate Screenshots for Leeched Files
-21. <b>-t or -thumb :</b> Custom Thumb for Specific Leech
+4. <b>-s or -select :</b> Select files from torrent via Bittorrent
+5. <b>-ss or -screenshots :</b> Generate Screenshots for Leeched Files
+6. <b>-t or -thumb :</b> Custom Thumb for Specific Leech
 """, """
 ➲ <b><i>By along the cmd</i></b>:
 <code>/cmd</code> link -n new name
@@ -99,20 +86,6 @@ MIRROR_HELP_MESSAGE = ["""<i>Send links/files along with cmd or reply to cmd to 
 
 ➲ <b><i>qBittorrent selection</i></b>: -s or -select
 <code>/cmd</code> link -s or by replying to file/link
-
-➲ <b><i>Custom Dump Select:</i></b> -ud or -dump
-<code>/{cmd}</code> -ud <code>dump_name</code> or <code>@username</code> or <code>-100xxxxxx chat_id</code> or all
-You can also select Dump Chat from Buttons if having more than 1 and this arg not specified
-You -ud all for Uploading in all Dump Chats of yours
-Make Sure Bot is already Admin else it will not accepted
-
-➲ <b><i>TG Links</i></b>:
-Treat tg links like any direct link
-Some links need user access so sure you must add USER_SESSION_STRING for it.
-<b><u>Types of links:</u></b>
-• <b>Public:</b> <code>https://t.me/channel_name/message_id</code>
-• <b>Private:</b> <code>tg://openmessage?user_id=xxxxxx&message_id=xxxxx</code>
-• <b>Super:</b> <code>https://t.me/c/channel_id/message_id</code>
 
 ➲ <b>NOTES:</b>
 1. Commands that start with <b>qb</b> are ONLY for torrents.
