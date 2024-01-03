@@ -281,7 +281,6 @@ f'''⌬ <b><i>Users Commands!</i></b>
 /login: Login to Bot to Access Bot without Temp Pass System (Private)
 
 <b>Bot Stats:</b>
-/{BotCommands.StatusCommand[0]} or /{BotCommands.StatusCommand[1]}: Shows a status page of all active tasks.
 /{BotCommands.StatsCommand[0]} or /{BotCommands.StatsCommand[1]}: Show Server detailed stats.
 /{BotCommands.PingCommand[0]} or /{BotCommands.PingCommand[1]}: Check how long it takes to Ping the Bot.''',
 
@@ -334,14 +333,10 @@ f'''⌬ <b><i>Miscellaneous Commands!</i></b>
 /{BotCommands.MediaInfoCommand[0]} or /{BotCommands.MediaInfoCommand[1]} [url/media]: Generate MediaInfo of Media or DL Urls
 
 <b>Torrent/Drive Search:</b>
-/{BotCommands.ListCommand} [query]: Search in Google Drive(s).
 /{BotCommands.SearchCommand} [query]: Search for torrents with API.
 
 <b>Movie/TV Shows/Drama Search:</b>
 /{BotCommands.IMDBCommand}: Search in IMDB.
-/{BotCommands.AniListCommand}: Search for anime in AniList.
-/{BotCommands.AnimeHelpCommand}: Anime help guide.
-/{BotCommands.MyDramaListCommand}: Search in MyDramaList.
 ''']
 
 PASSWORD_ERROR_MESSAGE = """
