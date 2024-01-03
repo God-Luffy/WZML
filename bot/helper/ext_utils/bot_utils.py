@@ -504,9 +504,6 @@ async def get_stats(event, key="home"):
     btns.ibutton('Back', f'wzmlx {user_id} stats home')
     if key == "home":
         btns = ButtonMaker()
-        btns.ibutton('Bot Stats', f'wzmlx {user_id} stats stbot')
-        btns.ibutton('OS Stats', f'wzmlx {user_id} stats stsys')
-        btns.ibutton('Repo Stats', f'wzmlx {user_id} stats strepo')
         btns.ibutton('Bot Limits', f'wzmlx {user_id} stats botlimits')
         msg = "⌬ <b><i>Bot & OS Statistics!</i></b>"
     elif key == "stbot":
@@ -579,7 +576,6 @@ async def get_stats(event, key="home"):
                 GL = ('∞' if (val := config_dict['GDRIVE_LIMIT']) == '' else val),
                 YL = ('∞' if (val := config_dict['YTDLP_LIMIT']) == '' else val),
                 PL = ('∞' if (val := config_dict['PLAYLIST_LIMIT']) == '' else val),
-                CL = ('∞' if (val := config_dict['CLONE_LIMIT']) == '' else val),
                 ML = ('∞' if (val := config_dict['MEGA_LIMIT']) == '' else val),
                 LL = ('∞' if (val := config_dict['LEECH_LIMIT']) == '' else val),
                 TV  = ('Disabled' if (val := config_dict['TOKEN_TIMEOUT']) == '' else get_readable_time(val)),
