@@ -8,7 +8,7 @@ class WZMLStyle:
     ST_BN2_URL = 'https://t.me/missqueenbotxchat'
     ST_MSG = '''<i>This bot can mirror all your links|files|torrents to Google Drive or any rclone cloud or to telegram or to ddl servers.</i>
 <b>Type {help_command} to get a list of available commands</b>'''
-    ST_BOTPM = '''ʜᴇʟʟᴏ 𓊈𒆜. ɪᴛ'ꜱ ʟᴜғғʏ 𒆜𓊉 👋
+    ST_BOTPM = '''ʜᴇʟʟᴏ 👋
 
 ɪ ᴀᴍ ᴀ ᴘᴏᴡᴇʀғᴜʟ ᴀᴅᴠᴀɴᴄᴇ ᴜʀʟ ᴜᴘʟᴏᴀᴅᴇʀ ʙᴏᴛ
 
